@@ -21,6 +21,7 @@ class ColumnSummary:
     max: Optional[float] = None
     mean: Optional[float] = None
     std: Optional[float] = None
+    zero_share: Optional[float] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -83,6 +84,9 @@ def summarize_dataset(
             max_val = float(s.max())
             mean_val = float(s.mean())
             std_val = float(s.std())
+            zero_share = (s == 0).mean()
+        else:
+            zero_share = 0.0
 
         columns.append(
             ColumnSummary(
@@ -98,6 +102,7 @@ def summarize_dataset(
                 max=max_val,
                 mean=mean_val,
                 std=std_val,
+                zero_share=float(zero_share),
             )
         )
 
@@ -185,6 +190,24 @@ def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> 
     flags["max_missing_share"] = max_missing_share
     flags["too_many_missing"] = max_missing_share > 0.5
 
+    constant_cols = [col for col in summary.columns if col.unique == 1] # проверка на наличие колонок со всеми обинаковыми значениями
+    flags["has_constant_columns"] = len(constant_cols) > 0
+
+    flags["has_high_cardinality_categoricals"] = False #категориальные признаки с очень большим числом уникальных значений (>50)
+    for col in summary.columns:
+        if col.unique > 50:
+            flags["has_high_cardinality_categoricals"] = True
+
+    flags["has_suspicious_id_duplicates"] = False
+    if summary.columns[0].unique != summary.n_rows:
+        flags["has_suspicious_id_duplicates"] = True
+
+    flags["has_many_zero_values"] = False
+    for col in summary.columns:
+        if col.zero_share > 0.5:
+            flags["has_many_zero_values"] = True
+            
+
     # Простейший «скор» качества
     score = 1.0
     score -= max_missing_share  # чем больше пропусков, тем хуже
@@ -218,6 +241,7 @@ def flatten_summary_for_print(summary: DatasetSummary) -> pd.DataFrame:
                 "max": col.max,
                 "mean": col.mean,
                 "std": col.std,
+                "zero_share": col.zero_share,
             }
         )
     return pd.DataFrame(rows)

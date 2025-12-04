@@ -33,13 +33,22 @@ uv run eda-cli overview data/example.csv
 Параметры:
 
 - `--sep` – разделитель (по умолчанию `,`);
-- `--encoding` – кодировка (по умолчанию `utf-8`).
+- `--encoding` – кодировка (по умолчанию `utf-8`);
 
 ### Полный EDA-отчёт
 
 ```bash
-uv run eda-cli report data/example.csv --out-dir reports
+uv run eda-cli report data/example.csv --out-dir reports_example --max-hist-columns 10 --top-k-categories 2 --title "Report" --min-missing-share 0.01
 ```
+Параметры:
+
+- `--sep` – разделитель (по умолчанию `,`);
+- `--encoding` – кодировка (по умолчанию `utf-8`);
+- `--out_dir` – каталог для сохнания отчёта (по умолчанию `reports`);
+- `--max-hist-columns` – сколько числовых колонок включать в набор гистограмм (по умолчанию `6`);
+- `--top-k-categories` – сколько top-значений выводить для категориальных признаков (по умолчанию `5`);
+- `--title` – (по умолчанию `# EDA-отчёт\n\n`);
+- `--min-missing-share` – (по умолчанию `0.3`).
 
 В результате в каталоге `reports/` появятся:
 
@@ -57,3 +66,7 @@ uv run eda-cli report data/example.csv --out-dir reports
 ```bash
 uv run pytest -q
 ```
+
+## По ДЗ сделано:
+
+- Добавлен флаг `has_constant_columns`
