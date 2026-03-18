@@ -1,8 +1,8 @@
 experiment_id,dataset,seed,model_summary,optimizer,lr,momentum,weight_decay,epochs_trained,best_val_accuracy,best_val_loss
-E1,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=False,Adam,0.001,0.0,0.0,20,0.8379237288135594,0.5409632579418225
-E2,EMNIST,19,hidden=unknown / relu / dropout=True / batchnorm=False,Adam,0.001,0.0,0.0,20,0.7929025423728814,0.6390710097585021
-E3,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,0.001,0.0,0.0,20,0.8586687853107344,0.4250801304976145
-E4,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,0.001,0.0,0.0,20,0.8577860169491526,0.4304479960836259
-O1,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,0.1,0.0,0.0,8,0.8137358757062146,0.6106794904180839
-O2,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,1e-05,0.0,0.0,8,0.7304908192090396,1.0896607640772888
-O3,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,SGD,0.001,0.9,0.0001,12,0.8490466101694916,0.456684561519973
+E1,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=False,Adam,0.001,0.0,0.0,20,0.836864406779661,0.5214344009672854
+E2,EMNIST,19,hidden=unknown / relu / dropout=True / batchnorm=False,Adam,0.001,0.0,0.0,20,0.791401836158192,0.6494012826916862
+E3,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,0.001,0.0,0.0,20,0.8599929378531074,0.4516463919547991
+E4,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,0.001,0.0,0.0,20,0.857079802259887,0.4273474888276246
+O1,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,0.1,0.0,0.0,8,0.80517302259887,0.6442547133245037
+O2,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,Adam,1e-05,0.0,0.0,8,0.7280190677966102,1.1057821380890025
+O3,EMNIST,19,hidden=unknown / relu / dropout=False / batchnorm=True,SGD,0.001,0.9,0.0001,12,0.8479872881355932,0.45900120379897835
