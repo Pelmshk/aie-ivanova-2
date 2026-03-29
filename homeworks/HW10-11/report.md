@@ -47,7 +47,7 @@
 - Loss: CrossEntropyLoss()
 - Optimizer(ы): C1/C2: Adam(lr=0.001), C3: Adam(fc params, lr=0.001), C4: Adam(layer4: lr=1e-4, fc: lr=1e-3, weight_decay=1e-4)
 - Batch size: 64
-- Epochs (макс): 20
+- Epochs (макс): 5
 - Критерий выбора лучшей модели: best_val_accuracy
 
 ## 5. Часть B: постановка задачи и режимы оценки (V1-V2)
@@ -76,10 +76,10 @@
 Короткая сводка (6-10 строк):
 
 - Лучший эксперимент части A: C4
-- Лучшая `val_accuracy`: 0.945
-- Итоговая `test_accuracy` лучшего классификатора: 0.943125
+- Лучшая `val_accuracy`: 0.935
+- Итоговая `test_accuracy` лучшего классификатора: 0.938125
 - Что дали аугментации (C2 vs C1): повышение accuracy (RandomCrop+Flip+ColorJitter сильно помогают на малом STL10) 
-- Что дал transfer learning (C3/C4 vs C1/C2): сильное повышение accuracy (~0.94 по сравнению ~0.65)
+- Что дал transfer learning (C3/C4 vs C1/C2): сильное повышение accuracy (~0.94 по сравнению ~0.56)
 - Что оказалось лучше: head-only или partial fine-tuning: partial fine-tuning немного выше по val_accuracy
 - Что показал режим V1 во второй части: жесткий, много пропусков
 - Что показал режим V2 во второй части: низкий threshold повышает качество модели
