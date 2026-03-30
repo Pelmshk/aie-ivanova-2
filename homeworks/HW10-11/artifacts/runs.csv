@@ -1,7 +1,7 @@
 experiment_id,task,dataset,seed,model_summary,optimizer,lr,epochs_trained,best_val_accuracy,test_accuracy,precision,recall,mean_iou,notes
-C1,classification,STL10,19,SimpleCNN 3conv+2fc,Adam,0.001,5,0.565,,,,,простая CNN без аугментаций
-C2,classification,STL10,19,SimpleCNN 3conv+2fc,Adam,0.001,5,0.486,,,,,"та же CNN, но с разумными аугментациями"
-C3,classification,STL10,19,"ResNet18 pretrained, head-only",Adam,0.001,3,0.943,,,,,"ResNet18 с pretrained weights; backbone заморожен, обучается только классификационная голова."
-C4,classification,STL10,19,"ResNet18 pretrained, layer4+fc",Adam,0.0001,3,0.935,0.938125,,,,"ResNet18 с pretrained weights; частичное fine-tune (например, layer4 + fc, либо другой близкий по смыслу вариант)."
-V1,segmentation,OxfordIIITPet,19,"DeepLabV3_ResNet50 pretrained COCO, PET_IDX=8, threshold=0.5",,,0,,,,,0.1521858727810645,базовая постобработка маски]
-V2,segmentation,OxfordIIITPet,19,"DeepLabV3_ResNet50 pretrained COCO, PET_IDX=8, threshold=0.1",,,0,,,,,0.1730747041420112,"альтернативная постобработка маски, другой порог для бинаризации выбранного foreground-класса"
+C1,classification,STL10,19,SimpleCNN 3conv+2fc,Adam,0.001,5,0.58,,,,,простая CNN без аугментаций
+C2,classification,STL10,19,SimpleCNN 3conv+2fc,Adam,0.001,5,0.521,,,,,"та же CNN, но с разумными аугментациями"
+C3,classification,STL10,19,"ResNet18 pretrained, head-only",Adam,0.001,3,0.939,,,,,"ResNet18 с pretrained weights; backbone заморожен, обучается только классификационная голова."
+C4,classification,STL10,19,"ResNet18 pretrained, layer4+fc",Adam,0.0001,3,0.941,0.935,,,,"ResNet18 с pretrained weights; частичное fine-tune (например, layer4 + fc, либо другой близкий по смыслу вариант)."
+V1,segmentation,OxfordIIITPet,19,"DeepLabV3_ResNet50 pretrained COCO, PET_IDX=8, threshold=0.5",,,0,,,,,0.1285785502958575,базовая постобработка маски]
+V2,segmentation,OxfordIIITPet,19,"DeepLabV3_ResNet50 pretrained COCO, PET_IDX=8, threshold=0.1",,,0,,,,,0.20667928994082765,"альтернативная постобработка маски, другой порог для бинаризации выбранного foreground-класса"
