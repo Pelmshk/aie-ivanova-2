@@ -1,0 +1,101 @@
+﻿doc_id,title,content
+doc_01,Введение в Pandas,"Pandas - это мощная библиотека Python для работы с данными. 
+Она предоставляет структуры данных DataFrame и Series для удобной обработки табличных данных.
+Основные возможности Pandas: чтение данных из различных форматов (CSV, Excel, SQL),
+очистка данных, фильтрация, группировка, агрегация и визуализация.
+Для установки используйте команду: pip install pandas.
+Импортируется библиотека как: import pandas as pd."
+doc_02,Работа с DataFrame,"DataFrame - это двумерная структура данных в Pandas, похожая на таблицу Excel.
+Создание DataFrame: df = pd.DataFrame({'A': [1, 2, 3], 'B': ['a', 'b', 'c']})
+Основные методы: df.head() - первые 5 строк, df.info() - информация о столбцах,
+df.describe() - статистика числовых столбцов, df.shape - размеры таблицы.
+Для доступа к столбцу используйте: df['column_name'] или df.column_name."
+doc_03,Чтение и запись данных,"Pandas поддерживает множество форматов данных.
+Чтение CSV: df = pd.read_csv('file.csv', sep=',', encoding='utf-8')
+Чтение Excel: df = pd.read_excel('file.xlsx', sheet_name='Sheet1')
+Запись CSV: df.to_csv('output.csv', index=False)
+Запись Excel: df.to_excel('output.xlsx', index=False)
+Чтение из SQL: df = pd.read_sql_query('SELECT * FROM table', connection)
+Важные параметры: sep - разделитель, encoding - кодировка, na_values - значения NaN."
+doc_04,Фильтрация данных,"Фильтрация позволяет выбрать строки по условию.
+Базовая фильтрация: df[df['age'] > 25]
+Несколько условий: df[(df['age'] > 25) & (df['salary'] > 50000)]
+Или условие: df[(df['city'] == 'Moscow') | (df['city'] == 'SPb')]
+Метод query: df.query('age > 25 and salary > 50000')
+Фильтрация по списку: df[df['city'].isin(['Moscow', 'SPb'])]
+Отрицание: df[~(df['age'] > 25)]"
+doc_05,Группировка и агрегация,"Группировка данных выполняется методом groupby.
+Базовая группировка: df.groupby('department')['salary'].mean()
+Несколько агрегаций: df.groupby('dept').agg({'salary': ['mean', 'sum'], 'age': 'count'})
+Группировка по нескольким столбцам: df.groupby(['dept', 'city'])['salary'].mean()
+Популярные функции: sum(), mean(), count(), min(), max(), std()
+Сброс индекса: df.groupby('dept').sum().reset_index()"
+doc_06,Обработка пропущенных значений,"Пропущенные значения (NaN) требуют специальной обработки.
+Поиск пропусков: df.isnull().sum() - количество пропусков по столбцам
+Удаление пропусков: df.dropna() - удаляет строки с пропусками
+Заполнение пропусков: df.fillna(0) - заполняет нулями
+Заполнение средним: df['age'].fillna(df['age'].mean(), inplace=True)
+Заполнение предыдущим значением: df.fillna(method='ffill')
+Заполнение следующим значением: df.fillna(method='bfill')"
+doc_07,NumPy основы,"NumPy - библиотека для работы с многомерными массивами.
+Создание массива: arr = np.array([1, 2, 3, 4, 5])
+Матрица: matrix = np.array([[1, 2], [3, 4]])
+Основные функции: np.zeros(5), np.ones((3, 3)), np.arange(0, 10, 2)
+Случайные числа: np.random.rand(5), np.random.randint(0, 100, 10)
+Статистика: arr.mean(), arr.std(), arr.min(), arr.max(), arr.sum()
+Математические операции: np.sqrt(arr), np.exp(arr), np.log(arr)"
+doc_08,Визуализация с Matplotlib,"Matplotlib - основная библиотека для визуализации данных.
+Базовый график: plt.plot(x, y), plt.show()
+Линейный график: plt.plot(data, marker='o', linestyle='-', color='blue')
+Точечная диаграмма: plt.scatter(x, y, c='red', s=50)
+Гистограмма: plt.hist(data, bins=30, edgecolor='black')
+Подписи: plt.title('Заголовок'), plt.xlabel('X'), plt.ylabel('Y')
+Несколько графиков: plt.subplot(2, 2, 1) - сетка 2x2, первый график"
+doc_09,Визуализация с Seaborn,"Seaborn - библиотека статистической визуализации на основе Matplotlib.
+Импорт: import seaborn as sns
+График распределения: sns.histplot(data, kde=True)
+Box plot: sns.boxplot(x='category', y='value', data=df)
+Scatter plot: sns.scatterplot(x='x_col', y='y_col', hue='category', data=df)
+Heatmap корреляции: sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+Pair plot: sns.pairplot(df, hue='target') - матрица графиков"
+doc_10,Объединение таблиц,"Для объединения таблиц используются методы merge и concat.
+Merge (SQL-style join): pd.merge(df1, df2, on='key', how='inner')
+Типы join: 'inner', 'outer', 'left', 'right'
+Объединение по разным столбцам: pd.merge(df1, df2, left_on='key1', right_on='key2')
+Concat: pd.concat([df1, df2], axis=0) - добавление строк
+Concat по колонкам: pd.concat([df1, df2], axis=1) - добавление столбцов
+Append (устаревший): df1.append(df2)"
+doc_11,Сортировка данных,"Сортировка выполняется методом sort_values.
+Сортировка по одному столбцу: df.sort_values('age')
+По убыванию: df.sort_values('age', ascending=False)
+По нескольким столбцам: df.sort_values(['dept', 'salary'], ascending=[True, False])
+Сортировка индекса: df.sort_index()
+Получение топ N: df.nlargest(5, 'salary') - топ 5 по зарплате
+df.nsmallest(5, 'age') - 5 самых молодых"
+doc_12,Применение функций,"Метод apply позволяет применять функции к данным.
+Применение к столбцу: df['new_col'] = df['old_col'].apply(lambda x: x*2)
+Применение к строкам: df.apply(lambda row: row['a'] + row['b'], axis=1)
+Замена значений: df['col'].replace({'old': 'new'}, inplace=True)
+Условное применение: np.where(df['age'] > 18, 'adult', 'child')
+Создание категорий: pd.cut(df['age'], bins=[0, 18, 35, 60, 100], labels=['young', 'adult', 'middle', 'senior'])"
+doc_13,Работа с датами и временем,"Pandas предоставляет мощные инструменты для работы с датами.
+Преобразование в datetime: pd.to_datetime(df['date_column'])
+Извлечение компонентов: df['year'] = df['date'].dt.year, df['month'] = df['date'].dt.month
+Фильтрация по дате: df[df['date'] > '2024-01-01']
+Генерация дат: pd.date_range(start='2024-01-01', periods=10, freq='D')
+Resample (агрегация по времени): df.resample('M', on='date').sum()
+Разница между датами: df['diff'] = df['date2'] - df['date1']"
+doc_14,Экспорт данных,"Pandas поддерживает экспорт в различные форматы.
+CSV: df.to_csv('file.csv', index=False, encoding='utf-8')
+Excel: df.to_excel('file.xlsx', sheet_name='Sheet1', index=False)
+JSON: df.to_json('file.json', orient='records', force_ascii=False)
+SQL: df.to_sql('table_name', connection, if_exists='replace', index=False)
+Pickle (бинарный формат): df.to_pickle('file.pkl')
+Параметры: index=False - не сохранять индекс, encoding - кодировка файла"
+doc_15,Оптимизация работы с большими данными,"Для работы с большими данными используйте оптимизации.
+Чтение частями: pd.read_csv('large.csv', chunksize=10000)
+Выбор столбцов: pd.read_csv('file.csv', usecols=['col1', 'col2'])
+Оптимизация типов: df['col'] = df['col'].astype('category') для категориальных данных
+Уменьшение памяти: df['int_col'] = pd.to_numeric(df['int_col'], downcast='integer')
+Использование Dask для очень больших данных: import dask.dataframe as dd
+Фильтрация при чтении: pd.read_csv('file.csv', nrows=1000) - только первые 1000 строк"
