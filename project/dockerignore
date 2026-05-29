@@ -1,0 +1,46 @@
+# Виртуальные окружения
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+env.bak/
+venv.bak/
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE
+.ipynb_checkpoints/
+.jupyter/
+jupyter_server_config.py
+jupyter_notebook_config.py
+
+# Тесты и нотбуки
+tests/
+notebooks/
+*.ipynb
+
+# Документация
+*.md
+
+# Данные
+data/raw/
+
+# Git и окружение
+.git/
+.gitignore
+.env
+.env.local
+.env.*.local
+
+# Docker
+Dockerfile
+.dockerignore
