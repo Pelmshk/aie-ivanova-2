@@ -23,24 +23,16 @@ env/
 .env.*.local
 *.pem
 *.key
-project/configs/*.env
-project/configs/secrets.*
-project/configs/*.json.bak
+configs/*.env
+configs/secrets.*
+configs/*.json.bak
 
 
 # Данные
-project/data/raw/
+data/raw/
 
 # Артефакты, логи, результаты
-project/artifacts/models/*.pkl
-project/artifacts/models/*.bin
-project/artifacts/models/*.pt
-project/artifacts/models/*.onnx
-project/artifacts/metrics*.json
-project/logs/
 *.log
-project/results/
-project/checkpoints/
 
 # Кэш инструментов разработки
 .pytest_cache/
