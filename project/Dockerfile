@@ -28,13 +28,15 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # Копирование кода и артефактов
 COPY src/ ./src/
+COPY configs/ ./configs/
 COPY artifacts/ ./artifacts/
 COPY data/processed/ ./data/processed/
 
 # Создание __init__.py при его отсутствии
 RUN touch src/__init__.py && \
     touch src/service/__init__.py && \
-    touch src/models/__init__.py
+    touch src/models/__init__.py && \
+    touch configs/__init__.py
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
