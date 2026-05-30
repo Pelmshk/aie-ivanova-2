@@ -100,7 +100,7 @@ uvicorn src.service.main:app --reload --host 0.0.0.0 --port 8000
   - /docs – Документация API (Swagger UI).
   - /health – Проверяет работоспособность сервиса и загрузку модели.
   - /metrics – Возвращает базовые метрики сервиса.
-  - /search (POST) – Возвращает рецепты, отсортированные по релевантности запросу.
+  - /search, /predict (POST) – Возвращает рецепты, отсортированные по релевантности запросу.
 
 Все эндпоинты также доступны через автоматическую документацию (http://localhost:8000/docs).
 
@@ -122,7 +122,7 @@ uvicorn src.service.main:app --reload --host 0.0.0.0 --port 8000
 
 ```bash
 # Создание processed/recipes_processed.parquet и processed/training_queries.parquet
-jupyter notebook project/notebooks/01_eda_and_preprocessing.ipynb
+jupyter notebook project/notebooks/01_eda.ipynb
 ```
 
 ---

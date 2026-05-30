@@ -7,8 +7,7 @@ import uvicorn
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles  # ← ДОБАВИТЬ
-from fastapi.responses import HTMLResponse     # ← ДОБАВИТЬ
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
 sys.path.append(str(Path(__file__).parents[1]))
@@ -56,7 +55,7 @@ search_service: Optional[RecipeSearchService] = None
 
 
 class IngredientSearchRequest(BaseModel):
-    """Запрос на поиск рецептов по ингредиентам."""
+    """Запрос на поиск рецептов по ингредиентам"""
     ingredients: List[str] = Field(
         ..., 
         description="Список ингредиентов",
@@ -77,7 +76,7 @@ class IngredientSearchRequest(BaseModel):
 
 
 class RecipeResponse(BaseModel):
-    """Информация о найденном рецепте."""
+    """Информация о найденном рецепте"""
     recipe_name: str
     similarity_score: float
     ingredients: List[str]
@@ -88,20 +87,21 @@ class RecipeResponse(BaseModel):
 
 
 class SearchResponse(BaseModel):
-    """Ответ API с результатами поиска."""
+    """Ответ API с результатами поиска"""
     query: List[str]
     results_count: int
     results: List[RecipeResponse]
 
 
 class HealthResponse(BaseModel):
-    """Ответ health check endpoint."""
+    """Ответ эндпоинта health check"""
     status: str
     service: str
     recipes_loaded: int
 
 
 class MetricsResponse(BaseModel):
+    """Ответ эндпоинта metrics"""
     uptime_seconds: float
     requests_total: int
     requests_success: int
@@ -111,7 +111,7 @@ class MetricsResponse(BaseModel):
 
 @app.on_event("startup")
 async def startup_event():
-    """Загрузка модели и данных при старте приложения."""
+    """Загрузка модели и данных при старте приложения"""
     global search_service
     
     models_dir = Path(__file__).parents[2] / "artifacts" / "models"
@@ -132,7 +132,7 @@ async def startup_event():
     logger.info("Сервис успешно инициализирован")
 
 
-# ==================== Endpoints ====================
+# Endpoints
 
 @app.get("/metrics", response_model=MetricsResponse)
 async def get_metrics():
@@ -161,6 +161,7 @@ async def health_check():
     )
 
 
+@app.post("/predict")
 @app.post("/search", response_model=SearchResponse)
 async def search_recipes(request: IngredientSearchRequest):
     """
@@ -190,7 +191,7 @@ async def search_recipes(request: IngredientSearchRequest):
 
 @app.get("/")
 async def root():
-    """Корневой endpoint с информацией о сервисе."""
+    """Корневой endpoint с информацией о сервисе"""
     return {
         "service": "Recipe Search API",
         "version": "2.0.0",
@@ -205,8 +206,3 @@ async def root():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
-    static_dir = Path(__file__).parent / "static"
-    if static_dir.exists():
-        app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="static")
-    else:
-        logger.warning(f"Папка статики не найдена: {static_dir}")
