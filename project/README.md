@@ -68,8 +68,6 @@ source .venv/bin/activate  # Для Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Если у проекта есть какие-то особенности установки (дополнительные шаги, внешние сервисы и т.п.), опишите их здесь.
-
 ---
 
 ## 4. Как запустить проект
